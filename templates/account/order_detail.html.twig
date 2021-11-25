@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande {{order.reference}} - La Boutique Française!{% endblock %}
+
+{% block content %}
+
+
+<h1>Détail de la commande {{order.reference}}</h1>
+
+<a href="{{path('app_account_order')}}">Retour à mes commandes</a>
+
+<hr>
+<p>Référence de la commande : {{order.reference}}</p>
+<p>Commande passée le : {{order.createdAt|date('d-m-Y')}}</p>
+<p>Transporteur : {{order.carrierName}}</p>
+<hr>
+<h2>Details</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Produit</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+    {% for product in order.orderDetails %}
+
+      <tr>
+        <td>{{product.product}}</th>
+        <td>{{product.quantity}}</td>
+        <td>{{((product.price /100)|number_format(2,',','.'))}} €</td>
+        <td>{{((product.total /100)|number_format(2,',','.'))}} €</td>
+      </tr>
+    
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="text-right">
+    <p>Sous-total : {{(order.getTotal /100)|number_format(2,',','.')}} €</p>
+    <p>Livraison : {{(order.carrierPrice /100)|number_format(2,',','.')}} €</p>
+    <p>Total : {{((order.getTotal + order.carrierPrice)/100)|number_format(2,',','.')}} €</p>
+  </div>
+
+
+
+{% endblock %}
