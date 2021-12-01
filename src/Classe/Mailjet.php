@@ -8,19 +8,19 @@ use Mailjet\Resources;
 class Mail
 {
 
-    private $api_key = 'f14d9436bdc38fc4917f3e27cf3ae8a4';
+    /*private $api_key = $_ENV['MAIL_API_PUBLIC'];
 
-    private $api_key_secret = '1ff9bd1b2e84112e08d5248506abd6c8';
+    private $api_key_secret = $_ENV['MAIL_API_SECRET'];*/
 
     public function send($to_email, $to_name, $subject, $content)
     {
-        $mj = new Client($this->api_key, $this->api_key_secret, true, ['version' => 'v3.1']);
+        $mj = new Client($_ENV['MAIL_API_PUBLIC'], $_ENV['MAIL_API_SECRET'], true, ['version' => 'v3.1']);
         
         $body = [
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "marc@larrun-prod.com",
+                        'Email' => "contact@larrun-prod.com",
                         'Name' => "La Boutique Française"
                     ],
                     'To' => [
@@ -29,7 +29,7 @@ class Mail
                             'Name' => $to_name,
                         ]
                     ],
-                    'TemplateID' => 3376681,
+                    'TemplateID' => 3390499,
                     'TemplateLanguage' => true,
                     'Subject' => $subject,
                     'Variables' => [
