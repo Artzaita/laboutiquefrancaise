@@ -8,10 +8,6 @@ use Mailjet\Resources;
 class Mail
 {
 
-    /*private $api_key = $_ENV['MAIL_API_PUBLIC'];
-
-    private $api_key_secret = $_ENV['MAIL_API_SECRET'];*/
-
     public function send($to_email, $to_name, $subject, $content)
     {
         $mj = new Client($_ENV['MAIL_API_PUBLIC'], $_ENV['MAIL_API_SECRET'], true, ['version' => 'v3.1']);
@@ -26,7 +22,7 @@ class Mail
                     'To' => [
                         [
                             'Email' => $to_email,
-                            'Name' => $to_name,
+                            'Name' => $to_name
                         ]
                     ],
                     'TemplateID' => 3390499,

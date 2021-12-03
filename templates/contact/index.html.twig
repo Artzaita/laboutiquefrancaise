@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter - La Boutique Française{% endblock %}
+
+{% block content %}
+    {% for message in app.flashes('notice') %}
+    <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+    <h1>Demande de contact</h1>
+    <div class="row">
+        <div class="col-md-8">
+            {{form(form)}}
+        </div>
+        <div class="col-md-4">
+            <h2>La Boutique Française</h2>
+            <address>10 Rue de la Liberté</address>
+            <address>69600 ICI EN FRANCE</address>
+        </div>
+    </div>
+    
+{% endblock %}
